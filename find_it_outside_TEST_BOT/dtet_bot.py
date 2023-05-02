@@ -15,9 +15,8 @@ from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher.filters import Text
 
-from myconfig import *
+from myconfig import *# <--
 
- 
 bot = Bot(token = TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(bot,storage=storage)
