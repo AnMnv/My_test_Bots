@@ -1,7 +1,6 @@
 {
     "send_photo": {
-        "en": "Send a photo",
-        "ru": "Пришлите фото"
+        "en": "Send a photo"
     },
     "button_cancel": {
         "en": "Cancel",

@@ -146,11 +146,14 @@ async def get_card(message: types.Message, state: FSMContext):
 
 ################# что умее этот бот	#################
 
-
+supported_languages = ['en']#, 'ru']
 @dp.message_handler(commands=['start'])  # какие команды отслеживаем
 @dp.throttled(anti_flood, rate=60)
 async def start(message):
-    language[message.from_user.id] = message.from_user.language_code
+    if message.from_user.language_code not in supported_languages:
+        language[message.from_user.id] = 'en'
+    else:
+        language[message.from_user.id] = message.from_user.language_code
     send_photo_request = messages["send_photo"][language[message.from_user.id]]
     await message.answer(f"{send_photo_request}", parse_mode='html')
     start_pressed.set(str(f'{message.from_user.id}'), str(
