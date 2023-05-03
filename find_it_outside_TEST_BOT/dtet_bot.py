@@ -235,6 +235,7 @@ async def get_photo(message: types.Message, state: FSMContext):
     # usersID.dump()
     # with open('loading.tgs', 'rb') as sticker_file: # https://chpic.su/en/emojis/LoadingEmoji/067/
     # msg = await bot.send_animation(message.chat.id, animation=sticker_file)
+    language[message.from_user.id] = message.from_user.language_code
     button_cancel = messages["button_cancel"][language[message.from_user.id]]
     share_location_button = messages["share_location_button"][language[message.from_user.id]]
     operation_canceled = messages["operation_canceled"][language[message.from_user.id]]
