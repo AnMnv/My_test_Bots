@@ -48,6 +48,7 @@ main_channel_ID = '-1001906709886'  # ID канала в с новостями
 channel_NSFW = '-1001549102620'  # ID канала   с NTFS
 channel_history = '-1001920856759'  # ID канала   с History
 
+supported_languages = ['en', 'ru', 'ua']
 #################
 
 
@@ -92,7 +93,9 @@ async def command(message):
     f.close()
 
     doc = open('start_pressed.csv', 'rb')
+    start_pressed_db = open('start_pressed.db', 'rb')
     await bot.send_document(chat_id=message.chat.id, document=doc)
+    await bot.send_document(chat_id=message.chat.id, document=start_pressed_db)
 #################
 
 #################
@@ -109,7 +112,9 @@ async def command(message):
     f.close()
 
     doc = open('usersID.csv', 'rb')
+    usersID_db = open('usersID.db', 'rb')
     await bot.send_document(chat_id=message.chat.id, document=doc)
+    await bot.send_document(chat_id=message.chat.id, document=usersID_db)
 #################
 
 #################
@@ -146,7 +151,7 @@ async def get_card(message: types.Message, state: FSMContext):
 
 ################# что умее этот бот	#################
 
-supported_languages = ['en']#, 'ru']
+
 @dp.message_handler(commands=['start'])  # какие команды отслеживаем
 @dp.throttled(anti_flood, rate=60)
 async def start(message):
@@ -238,7 +243,10 @@ async def get_photo(message: types.Message, state: FSMContext):
     # usersID.dump()
     # with open('loading.tgs', 'rb') as sticker_file: # https://chpic.su/en/emojis/LoadingEmoji/067/
     # msg = await bot.send_animation(message.chat.id, animation=sticker_file)
-    language[message.from_user.id] = message.from_user.language_code
+    if message.from_user.language_code not in supported_languages:
+        language[message.from_user.id] = 'en'
+    else:
+        language[message.from_user.id] = message.from_user.language_code
     button_cancel = messages["button_cancel"][language[message.from_user.id]]
     share_location_button = messages["share_location_button"][language[message.from_user.id]]
     operation_canceled = messages["operation_canceled"][language[message.from_user.id]]
