@@ -48,7 +48,7 @@ main_channel_ID = '-1001906709886'  # ID канала в с новостями
 channel_NSFW = '-1001549102620'  # ID канала   с NTFS
 channel_history = '-1001920856759'  # ID канала   с History
 
-supported_languages = ['en', 'ru', 'ua']
+supported_languages = ['en', 'ru', 'uk']
 #################
 
 
